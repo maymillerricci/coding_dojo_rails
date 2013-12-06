@@ -1,0 +1,34 @@
+<h1>Edit Product Info</h1>
+
+<% if flash[:errors] %>
+	<p>Please correct the following errors:</p>
+	<% flash[:errors].each do |error| %>
+		<p class="error"><%= error %></p>
+	<% end %>
+<% end %>
+
+<!-- regular form -->
+<!-- <h3>Product #<%= @product.id %>:</h3>
+<form action="/products/<%= @product.id %>" method="post">
+	<input name="_method" type="hidden" value="patch">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<p>Name:<input type="text" name="product[name]" value=<%= @product.name %>></p>
+	<p>Description:<textarea name="product[description]"><%= @product.description %></textarea></p>
+	<p>Pricing:<input type="pricing" name="product[pricing]" value=<%= @product.pricing %>></p>
+	<p><input type="submit" value="Update"></p>
+</form> -->
+
+<!-- simple form -->
+<%= simple_form_for @product do |f| %>
+ <%= f.error_notification %>
+ <%= f.input :name %>
+ <%= f.input :description %>
+ <%= f.input :pricing %>
+ <%= f.association :category, label_method: :name %> 
+ <%= f.button :submit %>
+<% end %>
+
+<%= button_to 'Delete Product', @product, method: :delete, confirm: "Are you sure you want to delete this product?" %>
+
+<p><%= link_to 'Show Product Info', product_path(@product) %></p>
+<p><%= link_to 'All Products', products_path %></p>

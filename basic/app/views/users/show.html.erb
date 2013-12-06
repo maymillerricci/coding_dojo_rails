@@ -1,0 +1,26 @@
+<% content_for :title do %>
+Show User Info
+<% end %>
+
+<h1>Users#show</h1>
+
+<p class="success"><%= flash[:message] %></p>
+<% puts flash[:message] %>
+
+<h2>Profile for User #<%= @user.id %>:</h2>
+<p>First Name: <%= @user.first_name %></p>
+<p>Last Name: <%= @user.last_name %></p>
+<p>Email Address: <%= @user.email %></p>
+
+<!-- <form action="/users/<%= @user.id %>" method="post">
+	<input name="_method" type="hidden" value="delete">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this user?')">
+</form> -->
+
+<%= button_to 'Delete User', @user, method: :delete, confirm: "Are you sure you want to delete this user?" %>
+
+<p><%= link_to 'Edit User Info', edit_user_path(@user) %></p>
+<p><%= link_to 'All Users', users_path %></p>
+
+

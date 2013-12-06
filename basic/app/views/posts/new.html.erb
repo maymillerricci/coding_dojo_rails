@@ -1,0 +1,16 @@
+<% content_for :title do %>
+Add a New Post
+<% end %>
+
+<h1>Posts#new</h1>
+<p>Find me in app/views/posts/new.html.erb</p>
+
+<h2>New Post Form</h2>
+<form action="">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<p>Title:<input type="text" name="title"></p>
+	<p>Content:<textarea name="content"></textarea></p>
+	<p><input type="submit"></p>
+
+</form>
+

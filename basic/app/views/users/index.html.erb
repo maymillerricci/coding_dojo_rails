@@ -1,0 +1,38 @@
+<% content_for :title do %>
+Display All Users
+<% end %>
+
+<h1>Users#index</h1>
+<p>Find me in app/views/users/index.html.erb</p>
+
+<p class="success"><%= flash[:message] %></p>
+
+<h2>Users Table</h2>
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email Address</th>
+			<th>Show Profile</th>
+			<th>Edit Info</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @users.each do |user| %>
+		<tr>
+			<td><%= user.id %></td>
+			<td><%= user.first_name %></td>
+			<td><%= user.last_name %></td>
+			<td><%= user.email %></td>
+			<td><%= link_to 'Show', user %></td>
+			<td><%= link_to 'Edit', edit_user_path(user) %></td>
+			<td><%= link_to 'Delete', user, method: :delete, confirm: "Are you sure you want to delete this user?" %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
+
+<p><%= link_to 'New User', new_user_path %></p>

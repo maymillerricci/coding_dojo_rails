@@ -1,0 +1,30 @@
+<h1>New Product</h1>
+
+<% if flash[:errors] %>
+	<p>Please correct the following errors:</p>
+	<% flash[:errors].each do |error| %>
+		<p class="error"><%= error %></p>
+	<% end %>
+<% end %>
+
+<!-- regular form -->
+<!-- <form action="/products" method="post">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	<p>Name:<input type="text" name="product[name]"></p>
+	<p>Description:<textarea name="product[description]"></textarea></p>
+	<p>Pricing:<input type="pricing" name="product[pricing]"></p>
+	<p><input type="submit"></p>
+</form> -->
+
+<!-- simple form -->
+<%= simple_form_for @product do |f| %>
+ <%= f.error_notification %>
+ <%= f.input :name %>
+ <%= f.input :description %>
+ <%= f.input :pricing %>
+ <%= f.association :category, label_method: :name %> 
+ <!-- THANKS KB!!!!!!!!!!!!! -->
+ <%= f.button :submit %>
+<% end %>
+
+<p><%= link_to 'All Products', products_path %></p>

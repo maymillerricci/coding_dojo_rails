@@ -1,0 +1,33 @@
+<div class="container">
+	<h1>All Users</h1>
+	<p class='success'><%= notice %></p>
+	<% if signed_in? %>
+		<p class='success'>Welcome, <%= current_user.first_name %>!</p>
+		<p><%= link_to 'Logout', session_path(current_user), method: :delete, class: 'btn btn-primary' %></p>
+	<% end %>
+	<table>
+		<thead>
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email Address</th>
+				<th>Show</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @users.each do |user| %>
+				<tr>
+					<td><%= user.first_name %></td>
+					<td><%= user.last_name %></td>
+					<td><%= user.email %></td>
+					<td><%= link_to 'Show', user_path(user) %></td>
+				</tr>
+			<% end %>	
+		</tbody>
+	</table>
+
+	<% if !signed_in? %>
+		<p><%= link_to 'Login or Register', new_user_path, class: 'btn btn-primary' %></p>
+	<% end %>
+
+</div>
